@@ -364,13 +364,13 @@ def restore(dstDirName):
   if os.path.isdir(dstDirName):
     print(dstDirName, 'already exists')
     return dstDirName
-  
+    
   zipName = dstDirName + '.zip'
   gd = GDrive()
   zf = gd.download(zipName)
   print('zf is', zf)
   if zf == None:
-    print('Return None')
+    os.mkdir(dstDirName)
     return None
   return unzip(zf, '.')
 

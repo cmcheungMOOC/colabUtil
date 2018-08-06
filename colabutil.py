@@ -370,6 +370,7 @@ def restore(dstDirName):
   zf = gd.download(zipName)
   print('zf is', zf)
   if zf == None:
+    print('Return None')
     return None
   return unzip(zf, '.')
 

@@ -363,16 +363,18 @@ def restore(dstDirName):
   
   if os.path.isdir(dstDirName):
     print(dstDirName, 'already exists')
-    return
+    return dstDirName
   
   zipName = dstDirName + '.zip'
   gd = GDrive()
   zf = gd.download(zipName)
-  if zf:
-    unzip(zf, '.')
+  print('zf is', zf)
+  if zf == None:
+    return None
+  return unzip(zf, '.')
 
 #@title Test Restore Directory { run: "auto", vertical-output: true }
-dstDirName = "" #@param ["", "datalab"]
+dstDirName = "" #@param ["", "datalab", "CNN_Results"]
 
 import shutil
 
@@ -380,5 +382,4 @@ if dstDirName != '':
   if os.path.isdir(dstDirName):
     print('rmtree', dstDirName)
     shutil.rmtree(dstDirName)
-  restore(dstDirName)
-  print(os.listdir(dstDirName))
+  print(restore(dstDirName))

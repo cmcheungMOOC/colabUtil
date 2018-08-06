@@ -14,6 +14,7 @@ Most of creatPyDrive is from https://gist.github.com/rdinse/159f5d77f13d03e0183c
 ##Usage
 ###Pull in py files into colab.  The content will be in colabUtil folder.
 ```python
+!pip install -U -q PyDrive
 !git clone https://github.com/cmcheungMOOC/colabUtil.git
   ```
 ###Add colab directory to module path
@@ -215,8 +216,6 @@ Most of creatPyDrive is from https://gist.github.com/rdinse/159f5d77f13d03e0183c
 """
 
 #@title Authenticate and Create the PyDrive Client
-!pip install -U -q PyDrive
-
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 from google.colab import auth

@@ -263,7 +263,9 @@ test = True
 fname = "" #@param ["", "a.txt"]
 
 if fname != '':
-  !pwd > a.txt
+  if not os.path.exists(fname):
+    with open(path, 'w') as fp:
+      fp.write('abc')
   uploadFile(drive, fname)
 
 #@title Find a File by Name in the Google Drive
@@ -317,7 +319,9 @@ class GDrive:
 fname = "" #@param ["", "a.txt"]
 
 if fname != '':
-  !pwd > a.txt
+  if not os.path.exists(fname):
+    with open(path, 'w') as fp:
+      fp.write('abc')
   gd = GDrive()
   gd.upload(fname)
   gd.download(fname)

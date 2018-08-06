@@ -24,7 +24,7 @@ sys.path.insert(0, '/content/colabUtil')
 ```
 ###Share and enjoy!
 ```python
-import colabUtil as cu
+import colabutil as cu
 cu.setupGlove()
 cu.setupAclImdb()
 cu.setupKaggleCatsAndDogs()

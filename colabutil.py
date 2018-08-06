@@ -259,12 +259,12 @@ def uploadFile(drive, fname):
   print('Uploaded {} with ID {}'.format(fname, uploaded.get('id')))
 
 #@title Test UploadFile to Google Drive { run: "auto", vertical-output: true }
-test = True
 fname = "" #@param ["", "a.txt"]
 
 if fname != '':
   if not os.path.exists(fname):
-    with open(path, 'w') as fp:
+    print('Creating', fname)
+    with open(fname, 'w') as fp:
       fp.write('abc')
   uploadFile(drive, fname)
 
@@ -288,7 +288,7 @@ def downloadFile(drive, fname, trashIt=False):
   file1 = findFile(drive, fname)
   if not file1:
     print(fname, 'not found')
-    return
+    return None
   
   downloaded = drive.CreateFile({'id': file1['id']})
   downloaded.GetContentFile(fname)
@@ -296,13 +296,15 @@ def downloadFile(drive, fname, trashIt=False):
   if trashIt:
     downloaded.Trash()
     print(fname, 'is moved to trash')
+    
+  return file1['title']
 
 #@title Test Download from Google Drive { run: "auto", vertical-output: true }
 fname = "" #@param ["", "a.txt"]
 trashIt = False #@param {type:"boolean"}
 
 if fname != '':
-  downloadFile(drive, fname, trashIt)
+  print(downloadFile(drive, fname, trashIt))
 
 #@title Google Drive Class
 class GDrive:
@@ -320,7 +322,7 @@ fname = "" #@param ["", "a.txt"]
 
 if fname != '':
   if not os.path.exists(fname):
-    with open(path, 'w') as fp:
+    with open(fname, 'w') as fp:
       fp.write('abc')
   gd = GDrive()
   gd.upload(fname)
@@ -365,8 +367,8 @@ def restore(dstDirName):
   
   zipName = dstDirName + '.zip'
   gd = GDrive()
-  gd.download(zipName)
-  unzip(zipName, '.')
+  zf = gd.download(zipName)
+  unzip(zf, '.')
 
 #@title Test Restore Directory { run: "auto", vertical-output: true }
 dstDirName = "" #@param ["", "datalab"]

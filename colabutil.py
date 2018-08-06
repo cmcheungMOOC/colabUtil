@@ -69,7 +69,7 @@ overwrite = False #@param {type:"boolean"}
 
 if url != "":
   download(url, overwrite)
-  !ls -l
+  os.listdir()
 
 """###Untar Dataset into Current Working Directory
 Currently, untar only support *.tar.gz.  This will be extended only if there is a real use case.
@@ -138,7 +138,7 @@ def zip(srcDir='.', mode='w'):
   return zipName
 
 #@title Test Zip { run: "auto" }
-srcDir = "/content/datalab" #@param ["", ".", "/content", "/content/datalab"]
+srcDir = "" #@param ["", ".", "/content", "/content/datalab"]
 
 if srcDir != '':
   if not os.path.isdir(srcDir):
@@ -164,7 +164,7 @@ def unzip(zipName, dstDir = '', skipIfDstDirExists=False):
 
 #@title Test Unzip { run: "auto", vertical-output: true }
 zipName = "" #@param ["", "glove.6B.zip", "/content/datalab.zip"]
-dstDir = "dataset/tmp" #@param ["", ".", "/content/dataset/glove.6B", "/content/dataset", "datalab", "a/b", "dataset/tmp"]
+dstDir = "" #@param ["", ".", "/content/dataset/glove.6B", "/content/dataset", "datalab", "a/b", "dataset/tmp"]
 
 if  zipName != "":
   d = unzip(zipName, dstDir)
@@ -249,7 +249,7 @@ def createPyDrive():
 test = False #@param {type:"boolean"}
 if test:
   drive = createPyDrive()
-  !ls
+  os.listdir()
 
 #@title Create & Upload a File
 def uploadFile(drive, fname):

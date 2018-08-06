@@ -368,7 +368,8 @@ def restore(dstDirName):
   zipName = dstDirName + '.zip'
   gd = GDrive()
   zf = gd.download(zipName)
-  unzip(zf, '.')
+  if zf:
+    unzip(zf, '.')
 
 #@title Test Restore Directory { run: "auto", vertical-output: true }
 dstDirName = "" #@param ["", "datalab"]
